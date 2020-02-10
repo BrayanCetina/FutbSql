@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class cancha extends AppCompatActivity {
     TextView txtMarcador;
     ImageView img;
     int contador =0;
+    public static int ESPERA=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +44,17 @@ public class cancha extends AppCompatActivity {
 
     public void Apreto(View view) {
         try {
-            if (contador == 0){
-                contador = contador + 1;
-                txtMarcador.setText(contador);
-            }else{
-                contador = contador + Integer.parseInt(txtMarcador.getText().toString());
-                txtMarcador.setText(contador);
-            }
+            esperarYCerrar(ESPERA);
+
+            contador = contador + 1;
+                txtMarcador.setText(Integer.toString(contador));
+
+
             ((ViewGroup)img.getParent()).removeView(img);
             RelativeLayout layout= (RelativeLayout) findViewById(R.id.cacha2_xml);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(190, 190);
-            int left = (int) (Math.random() * 1000) + 90;
-            int top = (int) (Math.random() * 1900) + 1;
+            int left = (int) (Math.random() * 950) + 90;
+            int top = (int) (Math.random() * 550) + 1;
             params.leftMargin = left;
             params.topMargin = top;
             //Carga imagen de recursos
@@ -61,5 +62,17 @@ public class cancha extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),"Error\n"+e.toString(),Toast.LENGTH_LONG).show();
         }
+    }
+    public void esperarYCerrar(int milisegundos) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                finalizarjuego();
+            }
+        }, milisegundos);
+    }
+    public void finalizarjuego() {
+        finish();
     }
 }
