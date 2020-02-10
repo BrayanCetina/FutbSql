@@ -14,11 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 
 public class cancha extends AppCompatActivity {
 
@@ -31,17 +26,20 @@ public class cancha extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancha);
-        //txtUser = findViewById(R.id.texUserCancha);
+        barra = findViewById(R.id.progressBar);
+        txtUser = findViewById(R.id.texUserCancha);
+        txtMarcador = findViewById(R.id.textMarcador);
         img = findViewById(R.id.imageView5);
-        //Bundle datos = this.getIntent().getExtras();
-        //String User = datos.getString("user");
-        //txtUser.setText(User);
+
+        Bundle datos = this.getIntent().getExtras();
+        String User = datos.getString("user");
+        txtUser.setText(User);
     }
 
     public void Apreto(View view) {
         try {
             ((ViewGroup)img.getParent()).removeView(img);
-            RelativeLayout layout= (RelativeLayout) findViewById(R.id.cacha2_xml);
+            RelativeLayout layout= (RelativeLayout) findViewById(R.id.my_relative_layout);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(200, 200);
             int left = (int) (Math.random() * 900) + 90;
             int top = (int) (Math.random() * 1080) + 1;
