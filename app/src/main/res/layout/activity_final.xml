@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/score"
     tools:context=".Final">
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="#ff0000"
         android:text="Jugador:"
         android:layout_weight="1"
         android:textSize="50dp"/>
@@ -26,12 +29,45 @@
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
+                android:textColor="#ff0000"
+
+                android:text=""
             android:layout_weight="1"
 
             android:textSize="50dp"/>
 
                 </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ff0000"
+            android:text="Score"
+            android:layout_weight="1"
+
+            android:textSize="50dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/puntos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ff0000"
+
+            android:text=""
+            android:layout_weight="1"
+
+            android:textSize="50dp"/>
+
+    </LinearLayout>
 
 
 

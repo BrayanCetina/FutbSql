@@ -54,7 +54,9 @@ public class cancha extends AppCompatActivity {
         }, milisegundos);
     }
     public void finalizarjuego() {
-        Intent cancha = new Intent(this, Final_juego.class);
+        Intent cancha = new Intent(this, Final.class);
+        cancha.putExtra("user",txtUser.getText().toString());
+        cancha.putExtra("score",txtMarcador.getText().toString());
         startActivity(cancha);
         finish();    }
 
