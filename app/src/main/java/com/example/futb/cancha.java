@@ -28,7 +28,7 @@ public class cancha extends AppCompatActivity {
     TextView txtMarcador;
     ImageView img;
     int contador =0;
-    public static int ESPERA=1000;
+    public static int ESPERA=60000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,26 @@ public class cancha extends AppCompatActivity {
         Bundle datos = this.getIntent().getExtras();
         String User = datos.getString("user");
         txtUser.setText(User);
+        esperarYCerrar(ESPERA);
+
     }
+
+    public void esperarYCerrar(int milisegundos) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                finalizarjuego();
+            }
+        }, milisegundos);
+    }
+    public void finalizarjuego() {
+        Intent cancha = new Intent(this, Final_juego.class);
+        startActivity(cancha);
+        finish();    }
 
     public void Apreto(View view) {
         try {
-            esperarYCerrar(ESPERA);
 
             contador = contador + 1;
                 txtMarcador.setText(Integer.toString(contador));
@@ -63,16 +78,5 @@ public class cancha extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error\n"+e.toString(),Toast.LENGTH_LONG).show();
         }
     }
-    public void esperarYCerrar(int milisegundos) {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // acciones que se ejecutan tras los milisegundos
-                finalizarjuego();
-            }
-        }, milisegundos);
-    }
-    public void finalizarjuego() {
-        finish();
-    }
+
 }

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cancha"></activity>
+        <activity android:name=".Final"></activity>
+        <activity
+            android:name=".Final_juego"
+            android:label="@string/title_activity_final_juego"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".cancha" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
