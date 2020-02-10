@@ -26,25 +26,34 @@ public class cancha extends AppCompatActivity {
     TextView txtUser;
     TextView txtMarcador;
     ImageView img;
+    int contador =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancha);
-        //txtUser = findViewById(R.id.texUserCancha);
+        txtUser = findViewById(R.id.textUserCancha);
+        txtMarcador = findViewById(R.id.textContador);
         img = findViewById(R.id.imageView5);
-        //Bundle datos = this.getIntent().getExtras();
-        //String User = datos.getString("user");
-        //txtUser.setText(User);
+        Bundle datos = this.getIntent().getExtras();
+        String User = datos.getString("user");
+        txtUser.setText(User);
     }
 
     public void Apreto(View view) {
         try {
+            if (contador == 0){
+                contador = contador + 1;
+                txtMarcador.setText(contador);
+            }else{
+                contador = contador + Integer.parseInt(txtMarcador.getText().toString());
+                txtMarcador.setText(contador);
+            }
             ((ViewGroup)img.getParent()).removeView(img);
             RelativeLayout layout= (RelativeLayout) findViewById(R.id.cacha2_xml);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(200, 200);
-            int left = (int) (Math.random() * 900) + 90;
-            int top = (int) (Math.random() * 1080) + 1;
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(190, 190);
+            int left = (int) (Math.random() * 1000) + 90;
+            int top = (int) (Math.random() * 1900) + 1;
             params.leftMargin = left;
             params.topMargin = top;
             //Carga imagen de recursos
