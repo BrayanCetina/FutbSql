@@ -3,7 +3,10 @@ package com.example.futb;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +30,7 @@ public class cancha extends AppCompatActivity {
     TextView txtUser;
     TextView txtMarcador;
     ImageView img;
+    String id,us;
     int contador =0;
     public static int ESPERA=60000;
 
@@ -54,6 +58,7 @@ public class cancha extends AppCompatActivity {
         }, milisegundos);
     }
     public void finalizarjuego() {
+        insert();
         Intent cancha = new Intent(this, Final.class);
         cancha.putExtra("user",txtUser.getText().toString());
         cancha.putExtra("score",txtMarcador.getText().toString());
@@ -79,6 +84,34 @@ public class cancha extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),"Error\n"+e.toString(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void insert() {
+        sqlhelper baseDatosAdmin = new sqlhelper(this,"Usuarios",null,1);
+        SQLiteDatabase bd=baseDatosAdmin.getWritableDatabase();
+        //selecionamos los datos del usuario en nuestra sqlite
+        Cursor tabla= bd.rawQuery("SELECT * FROM Usuarios",null);
+        tabla.moveToFirst();
+        do{
+            id=tabla.getString(0);
+            us=tabla.getString(1);
+            if(us.toUpperCase().equals(txtUser.getText().toString().toUpperCase())){
+
+            }
+        }while(tabla.moveToNext());
+        tabla.close();
+        bd.close();
+            sqlhelper dbh = new sqlhelper(this, "Usuarios", null, 1);
+
+            SQLiteDatabase db = dbh.getWritableDatabase();
+
+            ContentValues registro = new ContentValues();
+            registro.put("codigo", id+1);
+            registro.put("nombre", txtUser.getText().toString());
+            registro.put("puntos", txtMarcador.getText().toString());
+            db.insert("Usuarios", null, registro);
+            db.close();
+
     }
 
 }
