@@ -94,7 +94,6 @@ public class cancha extends AppCompatActivity {
         tabla.moveToFirst();
         do{
             id=tabla.getString(0);
-            us=tabla.getString(1);
             if(us.toUpperCase().equals(txtUser.getText().toString().toUpperCase())){
 
             }
